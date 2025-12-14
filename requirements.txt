@@ -1,0 +1,15 @@
+pandas
+numpy
+matplotlib
+seaborn
+plotly
+jupyterlab
+streamlit
+scikit-learn
+statsmodels
+altair
+ipywidgets
+prophet
+lightgbm
+scipy
+xgboost

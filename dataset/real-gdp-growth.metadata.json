@@ -1,0 +1,68 @@
+{
+  "chart": {
+    "title": "Annual GDP growth",
+    "subtitle": "Annual percent change in [gross domestic product](#dod:gdp). This data is adjusted for inflation.",
+    "citation": "International Monetary Fund (2025)",
+    "originalChartUrl": "https://ourworldindata.org/grapher/real-gdp-growth?v=1&csvType=full&useColumnShortNames=false",
+    "selection": [
+      "United States",
+      "China",
+      "India",
+      "United Kingdom",
+      "Germany",
+      "Japan"
+    ]
+  },
+  "columns": {
+    "Gross domestic product, constant prices - Percent change - Observations": {
+      "titleShort": "GDP growth observations",
+      "titleLong": "GDP growth observations",
+      "descriptionShort": "Annual percent change in gross domestic product. This data is adjusted for inflation.",
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "1980-2025",
+      "type": "Numeric",
+      "owidVariableId": 1120034,
+      "shortName": "gross_domestic_product__gdp__constant_prices__percent_change_observation",
+      "lastUpdated": "2025-11-06",
+      "nextUpdate": "2026-11-06",
+      "citationShort": "International Monetary Fund (2025) – with minor processing by Our World in Data",
+      "citationLong": "International Monetary Fund (2025) – with minor processing by Our World in Data. “GDP growth observations” [dataset]. International Monetary Fund, “World Economic Outlook (WEO) October 2025” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/1120034.metadata.json"
+    },
+    "1120034-annotations": {
+      "titleShort": "1120034-annotations",
+      "titleLong": "1120034-annotations",
+      "type": "SeriesAnnotation",
+      "citationShort": " – processed by Our World in Data",
+      "citationLong": " – processed by Our World in Data. “1120034-annotations” [dataset].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/undefined.metadata.json"
+    },
+    "Gross domestic product, constant prices - Percent change - Forecasts": {
+      "titleShort": "GDP growth projections",
+      "titleLong": "GDP growth projections",
+      "descriptionShort": "Near-term projections of the annual percent change in gross domestic product. This data is adjusted for inflation.",
+      "shortUnit": "%",
+      "unit": "%",
+      "timespan": "2010-2030",
+      "type": "Numeric",
+      "owidVariableId": 1120032,
+      "shortName": "gross_domestic_product__gdp__constant_prices__percent_change_forecast",
+      "lastUpdated": "2025-11-06",
+      "nextUpdate": "2026-11-06",
+      "citationShort": "International Monetary Fund (2025) – with minor processing by Our World in Data",
+      "citationLong": "International Monetary Fund (2025) – with minor processing by Our World in Data. “GDP growth projections” [dataset]. International Monetary Fund, “World Economic Outlook (WEO) October 2025” [original data].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/1120032.metadata.json"
+    },
+    "1120032-annotations": {
+      "titleShort": "1120032-annotations",
+      "titleLong": "1120032-annotations",
+      "type": "SeriesAnnotation",
+      "citationShort": " – processed by Our World in Data",
+      "citationLong": " – processed by Our World in Data. “1120032-annotations” [dataset].",
+      "fullMetadata": "https://api.ourworldindata.org/v1/indicators/undefined.metadata.json"
+    }
+  },
+  "dateDownloaded": "2025-11-26",
+  "activeFilters": {}
+}
