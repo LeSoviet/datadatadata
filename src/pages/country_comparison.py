@@ -6,6 +6,7 @@ import plotly.graph_objects as go
 import pandas as pd
 from .base import BasePage
 from src.ui.charts import ChartBuilder
+from src.ui.theme import get_color_palette
 from src.country_comparison import (
     compare_countries,
     side_by_side_comparison,
@@ -60,8 +61,8 @@ class CountryComparisonPage(BasePage):
                 comparison_df,
                 x='Country',
                 y='Historical Avg Growth',
-                color='Historical Avg Growth',
-                color_continuous_scale='Greys'
+                color='Country',
+                color_discrete_sequence=get_color_palette()
             )
             ChartBuilder.apply_minimal_theme(fig_avg, height=400)
             st.plotly_chart(fig_avg, use_container_width=True)
@@ -72,8 +73,8 @@ class CountryComparisonPage(BasePage):
                 comparison_df,
                 x='Country',
                 y='Volatility (Std Dev)',
-                color='Volatility (Std Dev)',
-                color_continuous_scale='Greys'
+                color='Country',
+                color_discrete_sequence=get_color_palette()
             )
             ChartBuilder.apply_minimal_theme(fig_vol, height=400)
             st.plotly_chart(fig_vol, use_container_width=True)
@@ -101,12 +102,13 @@ class CountryComparisonPage(BasePage):
         fig_sbs = go.Figure()
         
         merged_data = sbs_result['merged_data']
+        colors = get_color_palette()
         fig_sbs.add_trace(go.Scatter(
             x=merged_data['Year'],
             y=merged_data[f'{metric_col}_{countries[0]}'],
             mode='lines+markers',
             name=countries[0],
-            line=dict(color='#374151', width=2)
+            line=dict(color=colors[0], width=2)
         ))
         
         fig_sbs.add_trace(go.Scatter(
@@ -114,7 +116,7 @@ class CountryComparisonPage(BasePage):
             y=merged_data[f'{metric_col}_{countries[1]}'],
             mode='lines+markers',
             name=countries[1],
-            line=dict(color='#6b7280', width=2)
+            line=dict(color=colors[1], width=2)
         ))
         
         ChartBuilder.apply_minimal_theme(fig_sbs)
@@ -134,13 +136,15 @@ class CountryComparisonPage(BasePage):
             return
         
         fig_traj = go.Figure()
+        colors = get_color_palette()
         
-        for traj in trajectories:
+        for idx, traj in enumerate(trajectories):
             fig_traj.add_trace(go.Scatter(
                 x=traj['Years'],
                 y=traj['Cumulative_Index'],
                 mode='lines+markers',
-                name=traj['Country']
+                name=traj['Country'],
+                line=dict(color=colors[idx % len(colors)], width=2)
             ))
         
         ChartBuilder.apply_minimal_theme(fig_traj)

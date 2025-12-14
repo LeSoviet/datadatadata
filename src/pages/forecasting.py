@@ -8,6 +8,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from .base import BasePage
 from src.ui.charts import ChartBuilder
+from src.ui.theme import get_color_palette
 from src.advanced_analysis import forecast_entity
 
 
@@ -61,6 +62,7 @@ class ForecastingPage(BasePage):
 
         # Create forecast chart
         fig_forecast = go.Figure()
+        colors = get_color_palette()
 
         # Historical data
         hist = forecast_df[forecast_df[metric_col].notna()]
@@ -69,7 +71,7 @@ class ForecastingPage(BasePage):
             y=hist[metric_col],
             mode='lines+markers',
             name='Historical',
-            line=dict(color='#3b82f6', width=3)
+            line=dict(color=colors[0], width=3)
         ))
 
         # Forecast
@@ -79,7 +81,7 @@ class ForecastingPage(BasePage):
             y=fcast['forecast'],
             mode='lines+markers',
             name='Forecast',
-            line=dict(color='#8b5cf6', width=2, dash='dash')
+            line=dict(color=colors[4], width=2, dash='dash')
         ))
 
         ChartBuilder.apply_minimal_theme(fig_forecast)

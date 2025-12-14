@@ -8,6 +8,7 @@ import pandas as pd
 import plotly.graph_objects as go
 from .base import BasePage
 from src.ui.charts import ChartBuilder
+from src.ui.theme import get_color_palette
 from src.advanced_analysis import detect_crisis_years, detect_anomalies
 
 
@@ -56,13 +57,14 @@ class AnomalyDetectionPage(BasePage):
     def _render_crisis_timeline(self, crisis_df: pd.DataFrame):
         """Render timeline chart of mean growth with crisis indicators."""
         fig_crisis = go.Figure()
+        colors = get_color_palette()
 
         fig_crisis.add_trace(go.Scatter(
             x=crisis_df['Year'],
             y=crisis_df['mean_growth'],
             mode='lines',
             name='Mean Growth (selected)',
-            line=dict(color='#3b82f6', width=3)
+            line=dict(color=colors[0], width=3)
         ))
 
         # Add reference lines

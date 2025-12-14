@@ -3,7 +3,7 @@ Application Constants
 Centralized configuration values used across the application.
 """
 
-# Color palette for charts - colorful but professional
+# Color palette for charts - expanded for better country differentiation
 COLOR_PALETTE = [
     '#3b82f6',  # Blue
     '#ef4444',  # Red
@@ -20,6 +20,21 @@ COLOR_PALETTE = [
     '#22c55e',  # Emerald
     '#eab308',  # Yellow
     '#a855f7',  # Violet
+    '#0ea5e9',  # Sky
+    '#dc2626',  # Red-700
+    '#059669',  # Emerald-600
+    '#d97706',  # Amber-600
+    '#7c3aed',  # Violet-600
+    '#db2777',  # Pink-600
+    '#0d9488',  # Teal-600
+    '#ea580c',  # Orange-600
+    '#0891b2',  # Cyan-600
+    '#65a30d',  # Lime-600
+    '#4f46e5',  # Indigo-600
+    '#e11d48',  # Rose-600
+    '#16a34a',  # Green-600
+    '#ca8a04',  # Yellow-600
+    '#9333ea',  # Purple-600
 ]
 
 # Default countries to show on initial load

@@ -5,6 +5,7 @@ import plotly.graph_objects as go
 import pandas as pd
 from .base import BasePage
 from src.ui.charts import ChartBuilder
+from src.ui.theme import get_color_palette
 from src.advanced_forecasting import (
     ensemble_forecast,
     scenario_analysis,
@@ -59,6 +60,7 @@ class AdvancedForecastingPage(BasePage):
         })
         
         fig_ensemble = go.Figure()
+        colors = get_color_palette()
         
         historical = country_df[country_df['Year'] <= 2023].sort_values('Year')
         fig_ensemble.add_trace(go.Scatter(
@@ -66,7 +68,7 @@ class AdvancedForecastingPage(BasePage):
             y=historical['GDP_Growth'],
             mode='lines+markers',
             name='Historical',
-            line=dict(color='#374151', width=2)
+            line=dict(color=colors[0], width=2)
         ))
         
         fig_ensemble.add_trace(go.Scatter(
@@ -74,14 +76,19 @@ class AdvancedForecastingPage(BasePage):
             y=forecast_df['Prediction'],
             mode='lines+markers',
             name='Ensemble Forecast',
-            line=dict(color='#6b7280', width=2, dash='dash')
+            line=dict(color=colors[4], width=2, dash='dash')
         ))
+        
+        # Convert hex to rgba for transparency
+        hex_color = colors[4].lstrip('#')
+        r, g, b = tuple(int(hex_color[i:i+2], 16) for i in (0, 2, 4))
+        rgba_str = f'rgba({r}, {g}, {b}, 0.2)'
         
         fig_ensemble.add_trace(go.Scatter(
             x=forecast_df['Year'].tolist() + forecast_df['Year'].tolist()[::-1],
             y=forecast_df['Upper Bound'].tolist() + forecast_df['Lower Bound'].tolist()[::-1],
             fill='toself',
-            fillcolor='rgba(107, 114, 128, 0.2)',
+            fillcolor=rgba_str,
             line=dict(color='rgba(255,255,255,0)'),
             name='Confidence Interval',
             showlegend=True
@@ -121,18 +128,19 @@ class AdvancedForecastingPage(BasePage):
         })
         
         fig_scenario = go.Figure()
+        colors = get_color_palette()
         
         fig_scenario.add_trace(go.Scatter(
             x=scenario_df['Year'], y=scenario_df['Optimistic'],
-            name='Optimistic', line=dict(color='#059669', width=2)
+            name='Optimistic', line=dict(color=colors[2], width=2)
         ))
         fig_scenario.add_trace(go.Scatter(
             x=scenario_df['Year'], y=scenario_df['Baseline'],
-            name='Baseline', line=dict(color='#374151', width=2, dash='dash')
+            name='Baseline', line=dict(color=colors[0], width=2, dash='dash')
         ))
         fig_scenario.add_trace(go.Scatter(
             x=scenario_df['Year'], y=scenario_df['Pessimistic'],
-            name='Pessimistic', line=dict(color='#dc2626', width=2)
+            name='Pessimistic', line=dict(color=colors[1], width=2)
         ))
         
         ChartBuilder.apply_minimal_theme(fig_scenario)

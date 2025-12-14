@@ -9,6 +9,7 @@ import plotly.graph_objects as go
 from .base import BasePage
 from src.ui.charts import ChartBuilder
 from src.ui.layout import render_metrics_row
+from src.ui.theme import get_color_palette
 from src.ensemble_forecasting import (
     forecast_ensemble,
     generate_scenarios,
@@ -80,6 +81,7 @@ class EnsembleForecastingPage(BasePage):
         historical = df[df['Entity'] == country].sort_values('Year')
 
         fig = go.Figure()
+        colors = get_color_palette()
 
         # Historical data
         fig.add_trace(go.Scatter(
@@ -87,7 +89,7 @@ class EnsembleForecastingPage(BasePage):
             y=historical[metric_col],
             mode='lines',
             name='Historical',
-            line=dict(color='#3b82f6', width=2)
+            line=dict(color=colors[0], width=2)
         ))
 
         # Scenarios
@@ -99,7 +101,7 @@ class EnsembleForecastingPage(BasePage):
             y=scenarios['optimistic'],
             mode='lines',
             name='Optimistic',
-            line=dict(color='#10b981', dash='dash')
+            line=dict(color=colors[2], dash='dash')
         ))
 
         fig.add_trace(go.Scatter(
@@ -107,7 +109,7 @@ class EnsembleForecastingPage(BasePage):
             y=scenarios['baseline'],
             mode='lines+markers',
             name='Baseline',
-            line=dict(color='#f59e0b', width=3)
+            line=dict(color=colors[3], width=3)
         ))
 
         fig.add_trace(go.Scatter(
@@ -115,7 +117,7 @@ class EnsembleForecastingPage(BasePage):
             y=scenarios['pessimistic'],
             mode='lines',
             name='Pessimistic',
-            line=dict(color='#ef4444', dash='dash')
+            line=dict(color=colors[1], dash='dash')
         ))
 
         ChartBuilder.apply_minimal_theme(fig)
